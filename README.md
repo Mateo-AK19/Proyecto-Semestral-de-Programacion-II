@@ -49,11 +49,7 @@ Al ejecutarse, el sistema crea automáticamente las carpetas:
 ## Notas sobre el Web Scraping
 
 El módulo `scraping.py` intenta extraer resultados reales desde Wikipedia
-(resultados del Mundial 2022 como referencia estable). Si el sitio bloquea
-la solicitud o no hay conexión a internet, el sistema usa automáticamente un
-conjunto de resultados simulados (ver `RESULTADOS_SIMULADOS` en el código)
-para que la demostración funcional no se interrumpa. Esto también sirve
-como ejemplo de manejo de excepciones (`requests.exceptions.RequestException`).
+esultados del Mundial 2026 como referencia.
 
 ## Estructuras de datos utilizadas
 
