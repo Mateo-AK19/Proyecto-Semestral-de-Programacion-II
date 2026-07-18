@@ -16,20 +16,20 @@ Es una aplicación de consola que te permite registrarte, depositar saldo, apost
 
 ## 2. Instalación
 
-### 2.1 Requisitos previos
+### Requisitos previos
 - Tener **Python 3.12 o superior** instalado. Verifica con:
   ```bash
   python --version
   ```
 
-### 2.2 Instalar las dependencias
+### Instalar las dependencias
 Desde la carpeta del proyecto, ejecuta:
 ```bash
 pip install -r requirements.txt
 ```
 Esto instala: `pandas`, `openpyxl`, `requests` y `beautifulsoup4`.
 
-### 2.3 Ejecutar el sistema
+### Ejecutar el sistema
 ```bash
 python main.py
 ```
