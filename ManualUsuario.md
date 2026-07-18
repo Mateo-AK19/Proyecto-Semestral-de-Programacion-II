@@ -131,10 +131,10 @@ Porque el Mundial 2026 ya casi termina — el sistema solo muestra partidos real
 Cuando el partido real se juegue, corre la opción 6 en cualquier momento posterior. El sistema revisa Wikipedia de nuevo y valida tu apuesta automáticamente.
 
 **Me sale "No se pudieron obtener partidos" o "No se pudieron obtener resultados", ¿qué hago?**
-Revisa tu conexión a internet. Si el problema persiste, es posible que la página fuente (Wikipedia) esté temporalmente inaccesible o haya cambiado de estructura — el sistema no muestra datos falsos en ese caso, solo te avisa del error.
+Es posible que la página fuente esté temporalmente inaccesible o haya cambiado de estructura por lo que solo saltara el error de que no se pudo cargar los resultados. En cualquier caso se podria cambiar la url por otra y volver a intentar a obterner resultados.
 
 **¿Dónde se guarda mi información?**
 En la carpeta `datos/` (se crea automáticamente): `usuarios.json`, los reportes `.xlsx`, y `ganadores.txt`. El registro de auditoría (logs) se guarda en `logs/app.log`.
 
 **¿Puedo cerrar el programa y volver a entrar después?**
-Sí. Tu usuario y saldo quedan guardados en `datos/usuarios.json` y se recargan automáticamente la próxima vez que ejecutes `python main.py`.
+Si. Tu usuario y saldo quedan guardados en `datos/usuarios.json` y se recargan automáticamente la próxima vez que ejecutes `python main.py`.
