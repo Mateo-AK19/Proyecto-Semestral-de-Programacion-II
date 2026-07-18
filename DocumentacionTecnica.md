@@ -14,7 +14,7 @@ Sistema de consola desarrollado en Python 3.12+ que gestiona usuarios, saldos, a
 
 ## 2. Arquitectura
 
-### 2.1 Estructura de archivos
+### Estructura de archivos
 
 ```
 proyecto_apuestas/
@@ -30,7 +30,7 @@ proyecto_apuestas/
 └── logs/                # (se genera en tiempo de ejecución) app.log
 ```
 
-### 2.2 Diagrama de dependencias
+### Diagrama de dependencias
 
 ```
                     ┌─────────────┐
@@ -58,31 +58,31 @@ proyecto_apuestas/
 
 ## 3. Módulos
 
-### 3.1 `utilidades.py`
+### `utilidades.py`
 Base del sistema. Define:
 - **Excepciones personalizadas**: `MontoInvalidoError`, `UsuarioNoRegistradoError`, `CredencialesInvalidasError`, `ArchivoNoEncontradoError`, `DatosVaciosError`, `OperacionInvalidaError`, `ErrorScrapingError`.
 - **`configurar_logging()`**: configura `logging` para escribir en `logs/app.log` con formato `fecha | nivel | mensaje`.
 - **Validaciones reutilizables**: `validar_monto()`, `validar_correo()`, `validar_edad()`.
 
-### 3.2 `usuarios.py`
+### `usuarios.py`
 - Clase `Usuario` (POO): nombre, apellido, correo, edad, `password_hash` (SHA-256, nunca texto plano), saldo.
 - Clase `GestorUsuarios`: administra un **diccionario** `{correo: Usuario}` para búsqueda O(1).
   - Persistencia en `datos/usuarios.json` (serialización manual vía `to_dict()`/`from_dict()`).
   - `registrar_usuario()`, `iniciar_sesion()`.
 
-### 3.3 `pagos.py`
+### `pagos.py`
 - `METODOS_PAGO`: lista de métodos válidos (Tarjeta de Crédito, Débito, PayPal, Yappy, Transferencia Bancaria).
 - Clase `GestorPagos`: administra una **lista** (`historial_pagos`) de transacciones (diccionarios con correo, tipo, monto, método, fecha).
   - `depositar()` / `retirar()`, con validación de saldo suficiente para retiros.
 
-### 3.4 `apuestas.py`
+### `apuestas.py`
 - Clase `Apuesta` (POO): correo, partido, equipo apostado, monto, cuota, estado (`Pendiente`/`Ganada`/`Perdida`), ganancia, fecha.
 - Clase `GestorApuestas`: administra una **lista** (`historial_apuestas`) y un **conjunto** (`equipos_registrados`, sin duplicados).
   - `realizar_apuesta()`: reserva el monto del saldo del usuario inmediatamente.
   - `validar_resultados()`: compara apuestas pendientes contra resultados reales, acredita ganancias (`monto * cuota`), marca perdidas.
   - `guardar_ganadores()`: escribe en `datos/ganadores.txt` (modo *append*, nunca sobrescribe el historial).
 
-### 3.5 `scraping.py` — Módulo central del proyecto
+### `scraping.py` — Módulo central del proyecto
 
 **Fuente de datos**: `https://en.wikipedia.org/wiki/2026_FIFA_World_Cup` (Wikipedia, página principal del torneo).
 
@@ -111,12 +111,12 @@ Si no se encuentra ningún partido                → ErrorScrapingError (estruc
 ```
 El sistema **nunca** sustituye un fallo de scraping con datos inventados; propaga un error explicativo hasta `main.py`, que lo captura y muestra al usuario sin cerrar el programa. Esto satisface el requerimiento de manejo de excepciones de conexión de forma honesta.
 
-### 3.6 `reportes.py`
+### `reportes.py`
 Convierte los datos en memoria a archivos `.xlsx` con **Pandas** (`pd.DataFrame`) y **OpenPyXL** como motor de escritura:
 - `usuarios.xlsx`, `apuestas.xlsx`, `pagos.xlsx`, `ganancias.xlsx`.
 - `generar_todos_los_reportes()` omite (sin fallar) los reportes cuyos datos aún estén vacíos, registrando una advertencia en el log.
 
-### 3.7 `main.py`
+### `main.py`
 Orquestador: bucle de menú (`while True`), delega cada opción a la función correspondiente de cada módulo. Contiene un `try/except Exception` general como última red de seguridad — ningún error no capturado específicamente cierra el programa.
 
 ## 4. Estructuras de datos utilizadas
